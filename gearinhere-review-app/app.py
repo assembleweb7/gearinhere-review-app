@@ -98,14 +98,13 @@ auto_refresh = st.checkbox("Enable Auto-Refresh for this product (daily)")
 if st.button("Generate & Preview Review"):
     with st.spinner("Scraping product data..."):
         data = scrape_amazon(url_input) if source_option == "amazon" else scrape_kickstarter(url_input)
-    if data['image']:
+  if data['image']:
     try:
         st.image(data['image'], caption="Product Image Preview", use_container_width=True)
     except Exception as e:
         st.warning("Image preview failed to load.")
 else:
     st.info("No image found for this product.")
-
     st.subheader("Scraped Product Info")
     st.write(f"**Title:** {data['title']}")
     st.write(f"**Description:** {data['description'][:200]}...")
